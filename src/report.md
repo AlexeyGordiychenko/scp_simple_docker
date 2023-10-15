@@ -37,3 +37,45 @@
 1. Restart and check that it's running:
 
     ![restart](img/part1_10.png)
+
+## Part 2. Operations with container
+
+1. Contents of the `nginx.conf` configuration file inside the docker container:
+
+    ![nginx.conf](img/part2_1.png)
+
+1. Local `nginx.conf` file with the `/status` path configured (commented the default settings with `#include /etc/nginx/conf.d/*.conf`):
+
+    ![nginx.conf edited](img/part2_2.png)
+
+1. Copy the local file to the docker container and restart the service:
+
+    ![copy and restart](img/part2_3.png)
+
+1. Check `localhost:80/status` page:
+
+    ![status page](img/part2_4.png)
+
+1. Export and stop the container:
+
+    ![export and stop](img/part2_5.png)
+
+1. Docker won't let us delete an image if it is used by a container. We can use `-f` flag to force it to remove:
+
+    ![export and stop](img/part2_6.png)
+
+1. Delete the stopped container:
+
+    ![export and stop](img/part2_7.png)
+
+1. Import the container back:
+
+    ![export and stop](img/part2_8.png)
+
+1. Run the imported container:
+
+    ![export and stop](img/part2_9.png)
+
+1. Check that `localhost:80/status` returns the nginx server status page:
+
+    ![export and stop](img/part2_10.png)
