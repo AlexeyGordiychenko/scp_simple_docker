@@ -79,3 +79,36 @@
 1. Check that `localhost:80/status` returns the nginx server status page:
 
     ![export and stop](img/part2_10.png)
+
+## Part 3. Mini web server
+
+1. The source file of the mini web server in `C` and `FastCgi` located in the [mini_server.c](./server/mini_server.c) file. It will return a simple page saying `Hello World!` on every request from `127.0.0.1:8080`. It needs to be compiled with the `gcc` compilator in order to use it:
+
+    `gcc -Wall -Wextra -Werror server/mini_server.c -lfcgi -o server/mini_server`:
+
+    ![server source](img/part3_1.png)
+
+1. Create an nginx config that will proxy all requests from port `81` to the server on `127.0.0.1:8080`:
+
+    ![nginx config](img/part3_2.png)
+
+1. Use the official `nginx` docker image to run the mini web server in a container.
+
+    Run the container, copy the files to it and restart the `nginx` service:
+
+    ![run and copy files](img/part3_3.png)
+
+1. Run an interactive shell on the container and install necessary tools to run the server with commands:
+
+    + `apt-get update`
+    + `apt-get install libfcgi-dev`
+
+    ![shell](img/part3_4.png)
+
+1. Run the `server`:
+
+    ![server run](img/part3_5.png)
+
+1. Check that it's working:
+
+    ![check](img/part3_6.png)
