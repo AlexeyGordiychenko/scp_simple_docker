@@ -112,3 +112,42 @@
 1. Check that it's working:
 
     ![check](img/part3_6.png)
+
+## Part 4. Your own docker
+
+1. Create a [docker file](./Dockerfile) (base on the official nginx image) which:
+
+    + builds mini server sources on `FastCgi`
+    + runs it on port `8080`
+    + copies inside the image written `./nginx/nginx.conf`
+    + runs `nginx`
+
+    ![docker file](img/part4_1.png)
+
+    The [script](./run.sh), used in the docker file:
+
+    ![script](img/part4_2.png)
+
+1. Now we can build it and check that it's created:
+
+    ![build](img/part4_3.png)
+
+    ![check images](img/part4_4.png)
+
+1. Next run the image with mappings and check that the web server is working:
+
+    ![run](img/part4_5.png)
+
+    ![check](img/part4_6.png)
+
+1. Add proxying of `/status` page in `./nginx/nginx.conf` to return the nginx server status:
+
+    ![/status add](img/part4_7.png)
+
+1. Restart the container:
+
+    ![restart](img/part4_8.png)
+
+1. Check that the `/status` page is working
+
+    ![check status](img/part4_9.png)
