@@ -151,3 +151,24 @@
 1. Check that the `/status` page is working
 
     ![check status](img/part4_9.png)
+
+## Part 5. Dockle
+
+1. Check the image with dockle:
+
+    ![dockle](img/part5_1.png)
+
+1. Add clean up command and command to set the user to fix the second error and the first warning:
+
+    + `rm -rf /var/lib/apt/lists`
+    + `USER nginx`
+
+    ![edit Dokerfile](img/part5_2.png)
+
+1. Change the tag to fix the second warning:
+
+    ![change the tag](img/part5_3.png)
+
+1. Since the official `nginx` image is used there is no way to directly fix the first error, so the `-ak` flag is used to suppress it:
+
+    ![dockle](img/part5_4.png)
