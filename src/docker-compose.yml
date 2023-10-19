@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mini-web-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - mini-web-server-network
+
+  proxy:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx_proxy.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:8080
+    networks:
+      - mini-web-server-network
+    depends_on:
+      - mini-web-server
+
+networks:
+  mini-web-server-network:
+    driver: bridge

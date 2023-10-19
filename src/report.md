@@ -60,7 +60,7 @@
 
     ![export and stop](img/part2_5.png)
 
-1. Docker won't let us delete an image if it is used by a container. We can use `-f` flag to force it to remove:
+1. Docker won't let us delete an image if it is used by a container. Use `-f` flag to force it to remove:
 
     ![export and stop](img/part2_6.png)
 
@@ -128,7 +128,7 @@
 
     ![script](img/part4_2.png)
 
-1. Now we can build it and check that it's created:
+1. Build the image and check that it's created:
 
     ![build](img/part4_3.png)
 
@@ -172,3 +172,37 @@
 1. Since the official `nginx` image is used there is no way to directly fix the first error, so the `-ak` flag is used to suppress it:
 
     ![dockle](img/part5_4.png)
+
+## Part 6. Basic Docker Compose
+
+1. [docker-compose.yml](./docker-compose.yml) file:
+
+    ![docker-compese,yml](img/part6_1.png)
+
+    It will:
+
+    + start the docker container from Part 5
+    + start the docker container with nginx which will proxy all requests from port 8080 to port 81 of the first container
+    + map port 8080 of the second container to port 80 of the local machine
+
+1. `nginx` config for the `proxy` container:
+
+    ![nginx conf](img/part6_2.png)
+
+1. Since the `Dockerfile` was changed in the `Part 5`, it's necessary to grant additional access to the `nginx` user and change the `nginx` config.
+
+    + Add `chown -R nginx /home && chown -R nginx /var/cache/nginx` to the `Dockerfile`
+
+        ![edit Dockerfile](img/part6_4.png)
+
+    + Change `pid /var/run/nginx.pid;` to `pid /home/nginx.pid` in the `nginx` config
+
+        ![edit nginx config](img/part6_3.png)
+
+1. Build and run the containers:
+
+    ![build and run](img/part6_5.png)
+
+1. Check that it's working:
+
+    ![check](img/part6_6.png)
