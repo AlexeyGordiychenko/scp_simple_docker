@@ -2,6 +2,11 @@
 
 Introduction to docker. Developing a simple docker image for a server.
 
+As a result of the task there is a created [report](src/report.md)
+
+## Score:
+The final score is 100% (max)
+
 ## Task
 
 ### Part 1. Ready-made docker
